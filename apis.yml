@@ -1,7 +1,17 @@
 aid: thrive-market
 name: Thrive Market
-description: 'Thrive Market is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Thrive Market is a membership-based online grocery retailer headquartered
+  in Marina del Rey, California, selling organic and natural food, pantry staples,
+  frozen meat and seafood, beauty and personal care, baby, pet and household products
+  directly to consumers across the United States. Members pay an annual or monthly
+  fee in exchange for below-retail pricing, and the company operates its own Thrive
+  Market private label alongside thousands of third-party brands. It filters its
+  catalog by diet, ingredient, certification and social value, accepts EBT/SNAP for
+  grocery purchases, and funds free memberships for lower-income families through
+  its Thrive Gives program. Thrive Market is a direct-to-consumer commerce company:
+  it ships a website and mobile apps to shoppers, but publishes no public developer
+  program, API reference, or machine-readable API contract.'
+image: https://img.thrivemarket.com/custom_assets/bee32e3256b3db07765c2a3881fc7da8.jpg
 url: https://raw.githubusercontent.com/api-evangelist/thrive-market/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
@@ -12,6 +22,14 @@ created: '2026-08-05'
 modified: '2026-08-05'
 tags:
 - Company
+- E-Commerce
+- Retail
+- Grocery
+- Food and Beverage
+- Consumer Goods
+- Direct to Consumer
+- Membership
+- Health and Wellness
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -20,4 +38,53 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: https://forgeglobal.com/thrive-market_stock/
+  url: https://thrivemarket.com/
+- type: About
+  url: https://thrivemarket.com/about-us
+- type: Blog
+  url: https://thrivemarket.com/blog
+- type: Support
+  url: https://thrivemarket.com/faq/index/contactus
+- type: HelpCenter
+  url: https://help.thrivemarket.com/hc/en-us
+- type: SignUp
+  url: https://thrivemarket.com/join
+- type: Login
+  url: https://thrivemarket.com/login
+- type: TermsOfService
+  url: https://thrivemarket.com/terms
+- type: PrivacyPolicy
+  url: https://thrivemarket.com/privacy-policy
+- type: GitHubOrganization
+  url: https://github.com/ThriveMarket
+- type: LLMsTxt
+  url: llms/thrive-market-llms.txt
+- type: DomainSecurity
+  url: security/thrive-market-domain-security.yml
+x-enrichment:
+  date: '2026-08-05'
+  status: minimal
+  artifacts_added: 4
+  pass: local-v1
+x-coverage:
+  state: none
+  reason: no-developer-program
+  detail: >-
+    Thrive Market is a direct-to-consumer grocery retailer with no developer program at
+    all — developer.thrivemarket.com and developers.thrivemarket.com are NXDOMAIN, and its
+    own 2,785-entry llms.txt, which indexes the entire public site, contains zero
+    occurrences of "API", "developer", "SDK" or "webhook"; api.thrivemarket.com is the
+    mobile/web app backend and returns the same NotFoundHttpException JSON for every path
+    including a control path, so no spec is exposed there.
+  evidence:
+  - url: https://thrivemarket.com/llms.txt
+    status: 200
+  - url: https://developers.thrivemarket.com/
+    status: 0
+  - url: https://api.thrivemarket.com/openapi.json
+    status: 200
+  - url: https://api.thrivemarket.com/kin-control-9931
+    status: 200
+  - url: https://thrivemarket.com/.well-known/agent-card.json
+    status: 200
+  checked: '2026-08-05'

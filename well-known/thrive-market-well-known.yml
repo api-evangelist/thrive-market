@@ -1,0 +1,132 @@
+generated: '2026-08-05'
+method: probed
+source: live probes of the Thrive Market storefront and API hosts
+# NO WellKnown / SecurityTxt / APICatalog pointer is wired in apis.yml from this file.
+# Nothing here returned a real document. Every /.well-known/* path answered 200 with a
+# catch-all body, and a deliberately non-existent control path returned the SAME body.
+# A 200 is not evidence. This file exists so a later round does not re-credit these.
+
+documents: []
+
+hosts:
+- host: https://thrivemarket.com
+  verdict: no-real-documents
+  catch_all: true
+  catch_all_signature:
+    content_type: text/html; charset=utf-8
+    approx_bytes: 702034
+    body_starts_with: '<!DOCTYPE html><html lang="en-US"'
+    note: Next.js single-page-app shell — the storefront homepage, served for any unknown path.
+  control:
+    url: https://thrivemarket.com/.well-known/kin-control-9931.json
+    status: 200
+    bytes: 702033
+    real: false
+  probes:
+  - path: /.well-known/security.txt
+    status: 200
+    real: false
+    reason: catch-all HTML, byte-identical class to control
+  - path: /.well-known/openid-configuration
+    status: 200
+    real: false
+    reason: catch-all HTML
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    real: false
+    reason: catch-all HTML
+  - path: /.well-known/api-catalog
+    status: 200
+    real: false
+    reason: catch-all HTML
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    real: false
+    reason: catch-all HTML
+  - path: /.well-known/agent-card.json
+    status: 200
+    real: false
+    reason: catch-all HTML — rejected, no AgentCard shape
+  - path: /.well-known/agent.json
+    status: 200
+    real: false
+    reason: catch-all HTML — rejected, no AgentCard shape
+  - path: /security.txt
+    status: 200
+    real: false
+    reason: catch-all HTML
+
+- host: https://api.thrivemarket.com
+  verdict: no-real-documents
+  catch_all: true
+  description: >-
+    Mobile/web application backend. Answers a JSON envelope
+    {"code":400,"success":false,"errors":"NotFoundHttpException",...} for EVERY path,
+    including a control path that cannot exist. Symfony/Laravel-shaped. Not a documented
+    public API; robots.txt disallows /api/ on the storefront host.
+  catch_all_signature:
+    content_type: application/json
+    body_starts_with: '{"code":400,"success":false,"errors":"NotFoundHttpException"'
+  control:
+    url: https://api.thrivemarket.com/kin-control-9931
+    status: 200
+    real: false
+  probes:
+  - path: /openapi.json
+    status: 200
+    real: false
+  - path: /openapi.yaml
+    status: 200
+    real: false
+  - path: /swagger.json
+    status: 200
+    real: false
+  - path: /swagger.yaml
+    status: 200
+    real: false
+  - path: /api-docs
+    status: 200
+    real: false
+  - path: /docs
+    status: 200
+    real: false
+  - path: /redoc
+    status: 200
+    real: false
+  - path: /v1/openapi.json
+    status: 200
+    real: false
+  - path: /graphql
+    status: 200
+    real: false
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    real: false
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    real: false
+  - path: /.well-known/agent-card.json
+    status: 200
+    real: false
+  - path: /.well-known/agent.json
+    status: 200
+    real: false
+
+- host: https://developer.thrivemarket.com
+  verdict: does-not-resolve
+  dns: NXDOMAIN
+- host: https://developers.thrivemarket.com
+  verdict: does-not-resolve
+  dns: NXDOMAIN
+- host: https://docs.thrivemarket.com
+  verdict: no-tls-listener
+  note: TLS handshake failed (SSL_ERROR_SYSCALL); no docs host is published.
+
+summary:
+  real_documents_found: 0
+  security_txt: false
+  openid_configuration: false
+  oauth_authorization_server: false
+  api_catalog: false
+  ai_plugin: false
+  agent_card: false

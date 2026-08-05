@@ -1,0 +1,98 @@
+generated: '2026-08-05'
+method: searched
+source: https://thrivemarket.com/llms.txt
+# Provenance manifest for the verbatim llms.txt saved alongside this file.
+# The .txt itself cannot carry frontmatter, so its evidence lives here.
+
+llms_txt:
+  url: https://thrivemarket.com/llms.txt
+  file: thrive-market-llms.txt
+  http_status: 200
+  content_type: text/plain
+  bytes: 395881
+  fetched: '2026-08-05'
+  verbatim: true
+  entries: 2785
+  # Verified real, not a soft-404: the www host answers 200 with a 702KB HTML
+  # single-page-app shell for unknown paths (control probe below), while
+  # /llms.txt returns text/plain with distinct, path-specific content.
+  control_probe:
+    url: https://thrivemarket.com/kin-control-9931
+    http_status: 200
+    content_type: text/html
+    bytes: 702037
+    note: SPA catch-all returns the homepage for any unknown path; llms.txt is distinct.
+  sections:
+  - About & Social Impact
+  - Categories
+  - Brands
+  - Diets
+  - Ingredients
+  - Certifications
+  - Health Concerns
+  - Blog Articles
+  - Help Center
+
+llms_full_txt:
+  url: https://thrivemarket.com/llms-full.txt
+  http_status: 200
+  content_type: text/plain
+  bytes: 2725733
+  fetched: '2026-08-05'
+  committed: false
+  reason: >-
+    Per the enrichment contract, *-llms-full.txt is gitignored and never wired to an
+    apis.yml pointer. Thrive Market's own llms.txt describes this file as "the complete
+    catalog including products".
+
+# Agent/crawler posture declared by the provider in robots.txt. Recorded as observed
+# evidence only — this is NOT an x-agentic-access API contract and carries no
+# AgenticAccess pointer, because Thrive Market publishes no API operations to govern.
+agent_posture:
+  source: https://thrivemarket.com/robots.txt
+  http_status: 200
+  fetched: '2026-08-05'
+  ai_agents_explicitly_allowed: true
+  comment_in_file: '# Allow AI search and agent use'
+  allow: /
+  crawl_delay_seconds: 5
+  user_agents:
+  - OAI-SearchBot
+  - ChatGPT-User
+  - PerplexityBot
+  - FirecrawlAgent
+  - AndiBot
+  - ExaBot
+  - PhindBot
+  - YouBot
+  - BingBot
+  - Claude-Web
+  - ClaudeBot
+  - GPTBot
+  - Google-Extended
+  disallow_all_agents:
+  - /checkout/
+  - /customer/
+  - /catalogsearch/
+  - /review/
+  - /enable-cookies/
+  - /account/
+  - /api/
+  - /auth/
+  sitemap: https://thrivemarket.com/sitemap.xml
+  note: >-
+    robots.txt disallows /api/ and /auth/ on the storefront host. Those paths back the
+    website and mobile apps; they are not a documented public API and were not probed
+    beyond what robots.txt permits.
+
+x-evidence:
+  fetched: '2026-08-05'
+  probes:
+  - url: https://thrivemarket.com/llms.txt
+    status: 200
+  - url: https://thrivemarket.com/llms-full.txt
+    status: 200
+  - url: https://thrivemarket.com/robots.txt
+    status: 200
+  - url: https://thrivemarket.com/kin-control-9931
+    status: 200

@@ -11,6 +11,17 @@ description: 'Thrive Market is a membership-based online grocery retailer headqu
   its Thrive Gives program. Thrive Market is a direct-to-consumer commerce company:
   it ships a website and mobile apps to shoppers, but publishes no public developer
   program, API reference, or machine-readable API contract.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://img.thrivemarket.com/custom_assets/bee32e3256b3db07765c2a3881fc7da8.jpg
 url: https://raw.githubusercontent.com/api-evangelist/thrive-market/refs/heads/main/apis.yml
 x-type: company
